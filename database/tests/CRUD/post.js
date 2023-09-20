@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { test } from "../libs/test.js";
+import { testDB } from "../libs/testDB.js";
 
 const router = Router();
 
 router.get("/postData", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `
@@ -106,7 +106,7 @@ router.get("/postData", async (req, res, next) => {
     
     `,
     [],
-    "full insert data"
+    "Post data"
   );
 });
 export default router;

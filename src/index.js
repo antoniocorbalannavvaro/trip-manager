@@ -1,20 +1,25 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
+// CONTROLLER:
+import swaggerRoutes from "./routes/swagger.routes.js";
 import userRoutes from "./routes/users.routes.js";
 import customerRoutes from "./routes/customers.routes.js";
 import tripRoutes from "./routes/trips.routes.js";
 import hostRoutes from "./routes/host.routes.js";
 import transportationRoutes from "./routes/transportation.routes.js";
 import activitiesRoutes from "./routes/activities.routes.js";
-import dbTest from "../database/tests/routes/db.test.routes.js";
-import userTest from "../database/tests/routes/users.test.routes.js";
-import customerTest from "../database/tests/routes/customers.test.routes.js";
-import postCycle from "../database/tests/routes/post.test.routes.js";
-import createCycle from "../database/tests/routes/create.test.routes.js";
-import deleteCycle from "../database/tests/routes/delete.test.routes.js";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import swaggerRoutes from "./routes/swagger.routes.js";
+
+// TESTS:
+import dbTest from "../database/tests/db.test.js";
+import userTest from "../database/tests/tables/users.js";
+import customerTest from "../database/tests/tables/customers.js";
+import postTest from "../database/tests/CRUD/post.js";
+import createTest from "../database/tests/CRUD/create.js";
+import deleteTest from "../database/tests/CRUD/delete.js";
+
 import { API } from "./config.js";
 
 const app = express();
@@ -24,6 +29,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
+// CONTROLLER:
 app.use("/api", customerRoutes);
 app.use("/api", tripRoutes);
 app.use("/api", userRoutes);
@@ -34,11 +40,11 @@ app.use("", swaggerRoutes);
 
 //TESTS:
 app.use("/test", dbTest);
-app.use("/test/users", userTest);
-app.use("/test/customers", customerTest);
-app.use("/test/postCycle", postCycle);
-app.use("/test/createCycle", createCycle);
-app.use("/test/deleteCycle", deleteCycle);
+app.use("/test/tables/users", userTest);
+app.use("/test/tables/customers", customerTest);
+app.use("/test/crud", postTest);
+app.use("/test/crud", createTest);
+app.use("/test/crud", deleteTest);
 
 app.use((err, req, res, next) => {
   return res.status(404).json({

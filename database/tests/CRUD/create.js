@@ -1,21 +1,21 @@
 import { Router } from "express";
-import { test } from "../libs/test.js";
+import { testDB } from "../libs/testDB.js";
 
 const router = Router();
 
 router.get("/userRegister", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO users(user_name, email, password, gender, dni) 
     VALUES ($1, $2, $3, $4, $5) RETURNING *`,
     ["Antonio Corbalan", "antonio@gmail.com", "1234", "male", "123456789"],
-    "USER REGISTER"
+    "USER CREATED"
   );
 });
 
 router.get("/createCustomer", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO customers(user_id, first_name, last_name, email, dni, phone_prefix, phone, gender)
@@ -35,7 +35,7 @@ router.get("/createCustomer", async (req, res, next) => {
 });
 
 router.get("/createTrip", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO trips(customer_id, description, state) 
@@ -46,7 +46,7 @@ router.get("/createTrip", async (req, res, next) => {
 });
 
 router.get("/createHost", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO 
@@ -89,7 +89,7 @@ router.get("/createHost", async (req, res, next) => {
 });
 
 router.get("/createTransportation1", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO 
@@ -129,7 +129,7 @@ router.get("/createTransportation1", async (req, res, next) => {
 });
 
 router.get("/createTransportation2", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO 
@@ -169,7 +169,7 @@ router.get("/createTransportation2", async (req, res, next) => {
 });
 
 router.get("/createActivity1", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO activities(
@@ -204,7 +204,7 @@ router.get("/createActivity1", async (req, res, next) => {
 });
 
 router.get("/createActivity2", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `INSERT INTO activities(
@@ -239,7 +239,7 @@ router.get("/createActivity2", async (req, res, next) => {
 });
 
 router.get("/getInvoice", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `
@@ -277,7 +277,7 @@ router.get("/getInvoice", async (req, res, next) => {
 });
 
 router.get("/getInvoiceAmount", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `
@@ -317,7 +317,7 @@ router.get("/getInvoiceAmount", async (req, res, next) => {
 });
 
 router.get("/getAmountPending", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `
@@ -357,7 +357,7 @@ router.get("/getAmountPending", async (req, res, next) => {
 });
 
 router.get("/getCommissionAmount", async (req, res, next) => {
-  await test(
+  await testDB(
     res,
     next,
     `
