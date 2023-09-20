@@ -1,16 +1,19 @@
 #! /bin/bash
-bash ../../create_db.sh
-bash ../../CRUD/tests/post.sh
+# COMENTAR PARA HACER TEST POR SEPARADO:
+bash ./CRUD/tests/post.sh
+
+# DESCOMENTAR PARA HACER TEST POR SEPARADO:
+# bash ../../CRUD/tests/post.sh
 printf "\n"
-printf "########################### USERS TEST ###########################"
 printf "\n"
+printf "====================="
 printf "\n"
-printf "MUST BE SUCCESS:"
+printf "|| MUST BE SUCCESS ||"
 printf "\n"
-printf "======================"
+printf "====================="
+printf "\n"
 printf "\n"
 
-printf "\n"
 printf "[create user]:"
 printf "\n"
 curl -X 'GET' \
@@ -64,18 +67,17 @@ printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/tables/users/usersTypeConstraintTryBoolean' \
   -H 'accept: application/json'
+
+printf "\n"
+printf "\n"
+printf "==================="
+printf "\n"
+printf "|| MUST BE ERROR ||"
+printf "\n"
+printf "==================="
 printf "\n"
 printf "\n"
 
-
-printf "======================"
-printf "\n"
-printf "\n"
-
-printf "MUST BE ERRORS:"
-printf "\n"
-printf "======================"
-printf "\n"
 printf "[update non exists user]:"
 printf "\n"
 curl -X 'GET' \
@@ -98,7 +100,6 @@ curl -X 'GET' \
   'http://localhost:3000/test/tables/users/uniqueEmail' \
   -H 'accept: application/json'
 printf "\n"
-
 
 printf "\n"
 printf "[unique dni]:"
@@ -170,9 +171,6 @@ printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/tables/users/enumConstraint' \
   -H 'accept: application/json'
-printf "\n"
-
-printf "======================"
 printf "\n"
 
 

@@ -8,7 +8,7 @@ router.get("/updateUser/:id", async (req, res, next) => {
   await testDB(
     res,
     next,
-    `UPDATE users SET user_name = $1 WHERE user_id = $2;`,
+    `UPDATE users SET user_name = $1 WHERE user_id = $2 RETURNING *;`,
     ["New name", id],
     "update user name"
   );

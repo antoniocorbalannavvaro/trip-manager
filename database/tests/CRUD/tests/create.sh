@@ -1,7 +1,17 @@
 #! /bin/bash
-bash ../../create_db.sh
-printf '\n'
+#------------------------------------------
+# DESCOMENTAR PARA HACER TEST POR SEPARADO:
+# bash ../../create_db.sh
+# printf '\n'
+#------------------------------------------
 
+#------------------------------------------
+# COMENTAR PARA HACER TEST POR SEPARADO:
+bash ./create_db.sh
+# printf '\n'
+#------------------------------------------
+
+printf '\n'
 curl -X 'GET' \
   'http://localhost:3000/test/crud/userRegister' \
   -H 'accept: application/json'
@@ -73,8 +83,6 @@ printf '\n'
 curl -X 'GET' \
   'http://localhost:3000/test/crud/getCommissionAmount' \
   -H 'accept: application/json'
-printf '\n'
-printf '\n'
 
 
 

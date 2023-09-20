@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { API } from "./config.js";
 
 // CONTROLLER:
 import swaggerRoutes from "./routes/swagger.routes.js";
@@ -12,16 +13,22 @@ import hostRoutes from "./routes/host.routes.js";
 import transportationRoutes from "./routes/transportation.routes.js";
 import activitiesRoutes from "./routes/activities.routes.js";
 
-// TESTS:
+// -------------TESTS------------- //
+/*DB*/
 import dbTest from "../database/tests/db.test.js";
+
+/*TABLES*/
 import userTest from "../database/tests/tables/users.js";
 import customerTest from "../database/tests/tables/customers.js";
+import tripTest from "../database/tests/tables/trips.js";
+
+/*CRUD*/
 import postTest from "../database/tests/CRUD/post.js";
 import createTest from "../database/tests/CRUD/create.js";
 import deleteTest from "../database/tests/CRUD/delete.js";
 import updateTest from "../database/tests/CRUD/update.js";
 
-import { API } from "./config.js";
+// ------------------------------- //
 
 const app = express();
 
@@ -43,6 +50,7 @@ app.use("", swaggerRoutes);
 app.use("/test", dbTest);
 app.use("/test/tables/users", userTest);
 app.use("/test/tables/customers", customerTest);
+app.use("/test/tables/trips", tripTest);
 app.use("/test/crud", postTest);
 app.use("/test/crud", createTest);
 app.use("/test/crud", deleteTest);

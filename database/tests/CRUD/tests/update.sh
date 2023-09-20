@@ -1,8 +1,15 @@
 #! /bin/bash
-bash ../../create_db.sh
-bash post.sh
+#------------------------------------------
+# DESCOMENTAR PARA HACER TEST POR SEPARADO:
+# bash post.sh
+# printf "\n"
+#------------------------------------------
+
+#------------------------------------------
+# COMENTAR PARA HACER TEST POR SEPARADO:
+bash ./CRUD/tests/post.sh
 printf "\n"
-printf "\n"
+#------------------------------------------
 
 printf "[UPDATE USER]"
 printf "\n"

@@ -20,3 +20,15 @@ export async function testDB(
     nextFunction(error);
   }
 }
+
+export async function testDBnoLog(response, nextFunction, query, values = []) {
+  try {
+    const result = await pool.query(`${query}`, [...values]);
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
+    response.end();
+  } catch (error) {
+    nextFunction(error);
+  }
+}

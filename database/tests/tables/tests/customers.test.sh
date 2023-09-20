@@ -1,14 +1,20 @@
 #! /bin/bash
-bash ../../create_db.sh
-bash ../../CRUD/tests/post.sh
+# DESCOMENTAR PARA HACER TEST POR SEPARADO:
+# bash ../../CRUD/tests/post.sh
+
+# COMENTAR PARA HACER TEST POR SEPARADO:
+bash ./CRUD/tests/post.sh
+
 printf "\n"
-printf "########################### CUSTOMERS TEST ###########################"
+printf "\n"
+printf "====================="
+printf "\n"
+printf "|| MUST BE SUCCESS ||"
+printf "\n"
+printf "====================="
 printf "\n"
 printf "\n"
-printf "MUST BE SUCCESS:"
-printf "\n"
-printf "==================================="
-printf "\n"
+
 printf "[create customer]"
 printf "\n"
 curl -X 'GET' \
@@ -47,15 +53,16 @@ curl -X 'GET' \
   'http://localhost:3000/test/tables/customers/deleteCustomer' \
   -H 'accept: application/json'
 printf "\n"
-printf "==================================="
-
 
 printf "\n"
+printf "==================="
 printf "\n"
-printf "MUST BE ERROR:"
+printf "|| MUST BE ERROR ||"
 printf "\n"
-printf "==================================="
+printf "==================="
 printf "\n"
+printf "\n"
+
 printf "[create customer with no fk_user_id]"
 printf "\n"
 curl -X 'GET' \
@@ -71,7 +78,6 @@ curl -X 'GET' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
-
 
 printf "[customers with same email]"
 printf "\n"
@@ -143,10 +149,6 @@ curl -X 'GET' \
   'http://localhost:3000/test/tables/customers/phoneLengthConstraint' \
   -H 'accept: application/json'
 printf "\n"
-printf "\n"
-
-
-printf "==================================="
 printf "\n"
 
 

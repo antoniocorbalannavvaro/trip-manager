@@ -1,6 +1,6 @@
 import { Router } from "express";
 import pool from "../../src/db.js";
-import { testDB } from "./libs/testDB.js";
+import { testDB, testDBnoLog } from "./libs/testDB.js";
 
 const router = Router();
 
@@ -20,7 +20,7 @@ router.get("/dropDB", async (req, res, next) => {
       DROP TYPE IF EXISTS transport_type_enum;
       `,
     [],
-    "Delete tables"
+    "drop all tables"
   );
 });
 
@@ -37,7 +37,7 @@ router.get("/createTables", async (req, res, next) => {
     
     CREATE TYPE gender_enum AS ENUM ('male', 'female', 'others');
     
-    CREATE TYPE trip_state_enum AS ENUM ('finalized', 'Not started', 'ongoing');
+    CREATE TYPE trip_state_enum AS ENUM ('finalized', 'not started', 'ongoing');
     
     CREATE TYPE host_type_enum AS ENUM (
       'hotel',
@@ -197,7 +197,7 @@ router.get("/createTables", async (req, res, next) => {
     ON activities FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
     `,
     [],
-    "Create tables"
+    "create tables"
   );
 });
 
