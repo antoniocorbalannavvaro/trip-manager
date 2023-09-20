@@ -1,3 +1,6 @@
+#! /bin/bash
+bash ../../create_db.sh
+bash ../../CRUD/tests/post.sh
 printf "\n"
 printf "########################### CUSTOMERS TEST ###########################"
 printf "\n"
@@ -6,38 +9,42 @@ printf "MUST BE SUCCESS:"
 printf "\n"
 printf "==================================="
 printf "\n"
+printf "[create customer]"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/tables/customers/createCustomer' \
   -H 'accept: application/json'
 printf "\n"
+printf "\n"
 
+printf "[get all customers]"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/tables/customers/getAllCustomers' \
   -H 'accept: application/json'
 printf "\n"
+printf "\n"
 
+printf "[get customer by id]"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/tables/customers/getCustomerById' \
   -H 'accept: application/json'
 printf "\n"
+printf "\n"
 
+printf "[update customer]"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/tables/customers/updateCustomer' \
   -H 'accept: application/json'
 printf "\n"
+printf "\n"
 
+printf "[delete customer]"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/tables/customers/deleteCustomer' \
-  -H 'accept: application/json'
-printf "\n"
-
-curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/getCustomerById' \
-  -H 'accept: application/json'
-printf "\n"
-
-curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/updateCustomer' \
   -H 'accept: application/json'
 printf "\n"
 printf "==================================="
@@ -48,14 +55,11 @@ printf "\n"
 printf "MUST BE ERROR:"
 printf "\n"
 printf "==================================="
-
-
 printf "\n"
-
 printf "[create customer with no fk_user_id]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/createCustomerWithNoUserRef' \
+  'http://localhost:3000/test/tables/customers/userIdRequired' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"

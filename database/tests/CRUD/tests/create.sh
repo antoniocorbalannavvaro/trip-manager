@@ -1,3 +1,4 @@
+#! /bin/bash
 bash ../../create_db.sh
 printf '\n'
 

@@ -1,5 +1,6 @@
+#! /bin/bash
 curl -X 'GET' \
-  'http://localhost:3000/test/cleanDB' \
+  'http://localhost:3000/test/dropDB' \
   -H 'accept: application/json'
 
 printf "\n"

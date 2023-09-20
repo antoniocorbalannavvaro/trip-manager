@@ -4,7 +4,7 @@ import { testDB } from "./libs/testDB.js";
 
 const router = Router();
 
-router.get("/cleanDB", async (req, res, next) => {
+router.get("/dropDB", async (req, res, next) => {
   await testDB(
     res,
     next,

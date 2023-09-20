@@ -19,6 +19,7 @@ import customerTest from "../database/tests/tables/customers.js";
 import postTest from "../database/tests/CRUD/post.js";
 import createTest from "../database/tests/CRUD/create.js";
 import deleteTest from "../database/tests/CRUD/delete.js";
+import updateTest from "../database/tests/CRUD/update.js";
 
 import { API } from "./config.js";
 
@@ -45,6 +46,7 @@ app.use("/test/tables/customers", customerTest);
 app.use("/test/crud", postTest);
 app.use("/test/crud", createTest);
 app.use("/test/crud", deleteTest);
+app.use("/test/crud", updateTest);
 
 app.use((err, req, res, next) => {
   return res.status(404).json({

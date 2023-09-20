@@ -18,12 +18,13 @@ router.get("/getUsers", async (req, res, next) => {
   await testDB(res, next, `SELECT * FROM users;`, [], "get all users");
 });
 
-router.get("/getUserById", async (req, res, next) => {
+router.get("/getUserById/:id", async (req, res, next) => {
+  const id = req.params.id;
   await testDB(
     res,
     next,
     `SELECT * FROM users WHERE user_id = $1;`,
-    [2],
+    [id],
     "get user by id"
   );
 });

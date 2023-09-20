@@ -1,3 +1,4 @@
+#! /bin/bash
 bash ../../create_db.sh
 bash ../../CRUD/tests/post.sh
 printf "\n"
@@ -29,7 +30,7 @@ printf "\n"
 printf "[select user by id]:"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/users/getUserById' \
+  'http://localhost:3000/test/tables/users/getUserById/2' \
   -H 'accept: application/json'
 printf "\n"
 
