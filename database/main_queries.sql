@@ -28,20 +28,10 @@ FROM
 	trips t
 	INNER JOIN customers c ON t.customer_id = c.customer_id;
 
--- Los viajes que ha hecho cada usuario y quien ha creado a ese usuario:
+-- A que viaje y customer pertenece un host:
 SELECT
-	c.customer_id,
-	c.first_name AS customer_name,
 	t.trip_id,
-	t.description
-FROM
-	trips t
-	INNER JOIN customers c ON t.customer_id = c.customer_id
-	INNER JOIN users u ON c.user_id = u.user_id;
-
--- A que viaje y customer (y quien ha creado el customer) pertenece un host:
-SELECT
-	u.user_name,
+	c.customer_id,
 	c.first_name,
 	t.description,
 	h.host_name,
@@ -52,8 +42,10 @@ FROM
 	INNER JOIN customers c ON t.customer_id = c.customer_id
 	INNER JOIN users u ON c.user_id = u.user_id;
 
--- A que viaje y customer (y quien ha creado el customer) pertenece un transportation:
+-- A que viaje y customer pertenece un transportation:
 SELECT
+	t.trip_id,
+	c.customer_id,
 	c.first_name,
 	t.description,
 	tra.company,
@@ -66,6 +58,8 @@ FROM
 
 -- A que viaje y customer (y quien ha creado el customer) pertenece una activity:
 SELECT
+	t.trip_id,
+	c.customer_id,
 	c.first_name,
 	t.description,
 	a.activity_description,
@@ -91,39 +85,11 @@ UNION ALL
 SELECT 
 	CAST(a.activity_description AS VARCHAR(100)),
 	a.price
-FROM activities a WHERE a.activity_id = 1
-
- -- Calcular precio total de un viaje CONTANDO LO QUE YA SE HA PAGADO:
-SELECT SUM(pending_to_pay) FROM (SELECT 
-	CAST(h.host_type AS VARCHAR(100)) ,
-	h.price,
-	h.amount_payed,
-	(h.price - h.amount_payed) AS pending_to_pay,
-	h.commission AS commission_percentage,
-	ROUND((h.price * h.commission / 100),2) AS agent_amount_commission
-FROM host h 
-WHERE h.trip_id = 1 
-UNION ALL 
-SELECT 
-	CAST(t.transportation_type AS VARCHAR(100)),
-	t.price,
-	t.amount_payed,
-	(t.price - t.amount_payed) AS pending_to_pay,
-	t.commission AS commission_percentage,
-	ROUND((t.price * t.commission / 100),2) AS agent_amount_commission
-FROM transportation t WHERE t.trip_id = 1
-UNION ALL 
-SELECT 
-	CAST(a.activity_description AS VARCHAR(100)),
-	a.price,
-	a.amount_payed,
-	(a.price - a.amount_payed) AS pending_to_pay,
-	a.commission AS commission_percentage,
-	ROUND((a.price * a.commission / 100),2) AS agent_amount_commission
-FROM activities a WHERE a.trip_id = 1) AS pending_to_pay;
+FROM activities a WHERE a.trip_id = 1
 
 -- Deglose del viaje, precio de cada cosa, porcentaje de comision y comision en € para el agente de viajes:
 SELECT 
+	h.trip_id,
 	CAST(h.host_type AS VARCHAR(100)) ,
 	h.price,
 	h.amount_payed,
@@ -134,6 +100,7 @@ FROM host h
 WHERE h.trip_id = 1 
 UNION ALL 
 SELECT 
+	t.trip_id,
 	CAST(t.transportation_type AS VARCHAR(100)),
 	t.price,
 	t.amount_payed,
@@ -143,6 +110,7 @@ SELECT
 FROM transportation t WHERE t.trip_id = 1
 UNION ALL 
 SELECT 
+	a.trip_id,
 	CAST(a.activity_description AS VARCHAR(100)),
 	a.price,
 	a.amount_payed,
@@ -182,7 +150,6 @@ FROM activities a WHERE a.trip_id = 1) AS agent_amount_commission;
 
 
 -- PRECIO TOTAL SIN CONTAR LO PAGADO:
-
 SELECT SUM(price) FROM (SELECT 
 	CAST(h.host_type AS VARCHAR(100)) ,
 	h.price,
@@ -210,3 +177,32 @@ SELECT
 	a.commission AS commission_percentage,
 	ROUND((a.price * a.commission / 100),2) AS agent_amount_commission
 FROM activities a WHERE a.trip_id = 1) AS price;
+
+ -- Calcular precio total de un viaje CONTANDO LO QUE YA SE HA PAGADO:
+SELECT SUM(pending_to_pay) FROM (SELECT 
+	CAST(h.host_type AS VARCHAR(100)) ,
+	h.price,
+	h.amount_payed,
+	(h.price - h.amount_payed) AS pending_to_pay,
+	h.commission AS commission_percentage,
+	ROUND((h.price * h.commission / 100),2) AS agent_amount_commission
+FROM host h 
+WHERE h.trip_id = 1 
+UNION ALL 
+SELECT 
+	CAST(t.transportation_type AS VARCHAR(100)),
+	t.price,
+	t.amount_payed,
+	(t.price - t.amount_payed) AS pending_to_pay,
+	t.commission AS commission_percentage,
+	ROUND((t.price * t.commission / 100),2) AS agent_amount_commission
+FROM transportation t WHERE t.trip_id = 1
+UNION ALL 
+SELECT 
+	CAST(a.activity_description AS VARCHAR(100)),
+	a.price,
+	a.amount_payed,
+	(a.price - a.amount_payed) AS pending_to_pay,
+	a.commission AS commission_percentage,
+	ROUND((a.price * a.commission / 100),2) AS agent_amount_commission
+FROM activities a WHERE a.trip_id = 1) AS pending_to_pay;

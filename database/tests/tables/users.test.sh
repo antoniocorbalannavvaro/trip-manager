@@ -6,67 +6,63 @@ printf "MUST BE SUCCESS:"
 printf "\n"
 printf "======================"
 printf "\n"
+
+printf "\n"
+printf "[create user]:"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/createUsers' \
   -H 'accept: application/json'
 printf "\n"
 
+printf "\n"
+printf "[select all users]:"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/getUsers' \
   -H 'accept: application/json'
 printf "\n"
 
+printf "\n"
+printf "[select user by id]:"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/getUserById' \
   -H 'accept: application/json'
 printf "\n"
 
+printf "\n"
+printf "[update user]:"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/updateUser' \
   -H 'accept: application/json'
 printf "\n"
 
+printf "\n"
+printf "[delete user]:"
+printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/deleteUser' \
   -H 'accept: application/json'
 printf "\n"
-
-curl -X 'GET' \
-  'http://localhost:3000/test/users/updateNonExistUser' \
-  -H 'accept: application/json'
 printf "\n"
 
-curl -X 'GET' \
-  'http://localhost:3000/test/users/uniqueUserName' \
-  -H 'accept: application/json'
-printf "\n"
-
-curl -X 'GET' \
-  'http://localhost:3000/test/users/uniqueEmail' \
-  -H 'accept: application/json'
-printf "\n"
-
-curl -X 'GET' \
-  'http://localhost:3000/test/users/uniqueDni' \
-  -H 'accept: application/json'
-
+printf "[users type contraint 1]:"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/usersTypeConstraint1' \
   -H 'accept: application/json'
 printf "\n"
-
+curl -X 'GET' \
+  'http://localhost:3000/test/users/usersTypeConstraint3' \
+  -H 'accept: application/json'
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/usersTypeConstraint2' \
   -H 'accept: application/json'
 printf "\n"
 
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/users/usersTypeConstraint3' \
-  -H 'accept: application/json'
-printf "\n"
 
 printf "======================"
 printf "\n"
@@ -75,9 +71,41 @@ printf "\n"
 printf "MUST BE ERRORS:"
 printf "\n"
 printf "======================"
+printf "\n"
+printf "[update non exists user]:"
+printf "\n"
+curl -X 'GET' \
+  'http://localhost:3000/test/users/updateNonExistUser' \
+  -H 'accept: application/json'
+printf "\n"
 
 printf "\n"
-printf "[user with no user_name]:"
+printf "[unique user_name]:"
+printf "\n"
+curl -X 'GET' \
+  'http://localhost:3000/test/users/uniqueUserName' \
+  -H 'accept: application/json'
+printf "\n"
+
+printf "\n"
+printf "[unique email]:"
+printf "\n"
+curl -X 'GET' \
+  'http://localhost:3000/test/users/uniqueEmail' \
+  -H 'accept: application/json'
+printf "\n"
+
+
+printf "\n"
+printf "[unique dni]:"
+printf "\n"
+curl -X 'GET' \
+  'http://localhost:3000/test/users/uniqueDni' \
+  -H 'accept: application/json'
+printf "\n"
+
+printf "\n"
+printf "[create user with no user_name]:"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/usernameRequired' \
@@ -85,7 +113,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[user with no password]"
+printf "[create user with no password]"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/passwordRequired' \
@@ -93,7 +121,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[user with no email]"
+printf "[create user with no email]"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/users/emailRequired' \
@@ -142,4 +170,5 @@ printf "\n"
 
 printf "======================"
 printf "\n"
+
 

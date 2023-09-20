@@ -7,33 +7,24 @@ router.get("/createUsers", async (req, res, next) => {
   try {
     const result = await pool.query(
       `
-INSERT INTO users(user_name, email, password, gender, dni)
-  VALUES(
-    'Antonio Corbalán Navarro',
-    'antoniocn1996@gmail.com',
-    'admin1',
-    'male',
-    '111111F') RETURNING *;
-
-INSERT INTO users(user_name, email, password, gender, dni)
-  VALUES(
-      'Ignacio Nieto Iniesta',
-      'lofiu@gmail.com',
-      'admin1',
-      'male',
-      '46657699E');
+    INSERT INTO users(user_name, email, password, gender, dni)
+      VALUES(
+          'Ignacio Nieto Iniesta',
+          'lofiu@gmail.com',
+          'admin1',
+          'male',
+          '46657699E') RETURNING *;
 `
     );
-
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
     res.status(200).json({
       success: "Create users",
       user: result.rows,
     });
   } catch (error) {
-    res.json({
-      success: "Can't insert user with same user_name",
-      proof: error.detail,
-    });
+    next(error);
   }
 });
 
@@ -44,6 +35,9 @@ router.get("/getUsers", async (req, res, next) => {
       success: "Get all users",
       users: result.rowCount,
     });
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
   } catch (error) {
     next(error);
   }
@@ -54,7 +48,9 @@ router.get("/getUserById", async (req, res, next) => {
     const result = await pool.query(`SELECT * FROM users WHERE user_id = $1;`, [
       2,
     ]);
-
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
     res.status(200).json({
       success: "Get user by id",
       proof: {
@@ -63,9 +59,7 @@ router.get("/getUserById", async (req, res, next) => {
       },
     });
   } catch (error) {
-    res.json({
-      success: "Can't get an user_id that doesn't exists",
-    });
+    next(error);
   }
 });
 
@@ -85,6 +79,9 @@ router.get("/updateUser", async (req, res, next) => {
         user_id = 2 RETURNING *;
       `
     );
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
     res.status(200).json({
       success: "Update User",
       proof: {
@@ -93,37 +90,28 @@ router.get("/updateUser", async (req, res, next) => {
       },
     });
   } catch (error) {
-    res.json({
-      success: "Can't get an user_id that doesn't exists",
-    });
+    next(error);
   }
 });
 
 router.get("/deleteUser", async (req, res, next) => {
   try {
-    const userDeleted = await pool.query(
-      "SELECT * FROM users WHERE user_id = $1",
-      [2]
-    );
     const result = await pool.query("DELETE FROM users WHERE user_id = $1", [
       2,
     ]);
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
     res.status(200).json({
       success: "Delete user",
     });
   } catch (error) {
-    res.status(200).json({
-      success: "Delete user",
-    });
+    next(error);
   }
 });
 
 router.get("/updateNonExistUser", async (req, res, next) => {
   try {
-    const userUpdate = await pool.query(
-      "SELECT user_name FROM users WHERE user_id = $1",
-      [2]
-    );
     const result = await pool.query(
       `
       UPDATE
@@ -134,39 +122,39 @@ router.get("/updateNonExistUser", async (req, res, next) => {
         user_id = 2 RETURNING *;
       `
     );
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
     res.status(200).json({
       success: "User Update",
-      before: userUpdate.rows[0].user_name,
       after: result.rows[0].user_name,
     });
   } catch (error) {
-    res.status(200).json({
-      success: "Can't update a user that doesn't exists",
-    });
+    next(error);
   }
 });
 
 router.get("/uniqueUserName", async (req, res, next) => {
   try {
-    const sameUserName = await pool.query(
+    const result = await pool.query(
       `
       INSERT INTO users(user_name, email, password, gender, dni)
       VALUES(
-        'Antonio Corbalán Navarro',
+        'true',
         'antoniocn1996@gmail.com',
         'admin1',
         'male',
         '11111F') RETURNING *;
     `
     );
+    if (result.rowCount === 0) {
+      res.status(404);
+    }
     res.status(200).json({
-      message: sameUserName,
+      message: result,
     });
   } catch (error) {
-    res.json({
-      success: "Can't insert user with same user_name",
-      proof: error.detail,
-    });
+    next(error);
   }
 });
 
@@ -177,7 +165,7 @@ router.get("/uniqueEmail", async (req, res, next) => {
       INSERT INTO users(user_name, email, password, gender, dni)
       VALUES(
         'Nuevo',
-        'antoniocn1996@gmail.com',
+        'true',
         'admin1',
         'male',
         'nuevo') RETURNING *;
@@ -187,10 +175,7 @@ router.get("/uniqueEmail", async (req, res, next) => {
       message: sameEmail,
     });
   } catch (error) {
-    res.json({
-      success: "Can't insert user with same email",
-      proof: error.detail,
-    });
+    next(error);
   }
 });
 
@@ -204,17 +189,14 @@ router.get("/uniqueDni", async (req, res, next) => {
         'nuevo@gmail.com',
         'admin1',
         'male',
-        '111111F') RETURNING *;
+        'true') RETURNING *;
     `
     );
     res.status(200).json({
       message: sameDni.rows[0],
     });
   } catch (error) {
-    res.json({
-      success: "Can't insert user with same dni",
-      proof: error.detail,
-    });
+    next(error);
   }
 });
 

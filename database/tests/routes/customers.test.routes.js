@@ -21,6 +21,7 @@ router.get("/createCustomer", async (req, res, next) => {
         "others",
       ]
     );
+
     res.status(200).json({
       success: "Create customer",
       proof: { customer_id: result.rows[0].customer_id },

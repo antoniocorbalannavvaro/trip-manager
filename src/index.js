@@ -9,7 +9,9 @@ import activitiesRoutes from "./routes/activities.routes.js";
 import dbTest from "../database/tests/routes/db.test.routes.js";
 import userTest from "../database/tests/routes/users.test.routes.js";
 import customerTest from "../database/tests/routes/customers.test.routes.js";
-import lifeCycle from "../database/tests/routes/lifecycle.test.routes.js";
+import postCycle from "../database/tests/routes/post.test.routes.js";
+import createCycle from "../database/tests/routes/create.test.routes.js";
+import deleteCycle from "../database/tests/routes/delete.test.routes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import swaggerRoutes from "./routes/swagger.routes.js";
@@ -34,7 +36,9 @@ app.use("", swaggerRoutes);
 app.use("/test", dbTest);
 app.use("/test/users", userTest);
 app.use("/test/customers", customerTest);
-app.use("/test/lifecycle", lifeCycle);
+app.use("/test/postCycle", postCycle);
+app.use("/test/createCycle", createCycle);
+app.use("/test/deleteCycle", deleteCycle);
 
 app.use((err, req, res, next) => {
   return res.status(404).json({
