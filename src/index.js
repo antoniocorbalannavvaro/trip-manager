@@ -22,6 +22,8 @@ import userTest from "../database/tests/tables/users.js";
 import customerTest from "../database/tests/tables/customers.js";
 import tripTest from "../database/tests/tables/trips.js";
 import hostTest from "../database/tests/tables/host.js";
+import transportationTest from "../database/tests/tables/transportation.js";
+import activitiesTest from "../database/tests/tables/activities.js";
 
 /*CRUD*/
 import postTest from "../database/tests/CRUD/post.js";
@@ -53,6 +55,8 @@ app.use("/test/DB/tables/users", userTest);
 app.use("/test/DB/tables/customers", customerTest);
 app.use("/test/DB/tables/trips", tripTest);
 app.use("/test/DB/tables/host", hostTest);
+app.use("/test/DB/tables/transportation", transportationTest);
+app.use("/test/DB/tables/activities", activitiesTest);
 
 app.use("/test/DB/crud", postTest);
 app.use("/test/DB/crud", createTest);

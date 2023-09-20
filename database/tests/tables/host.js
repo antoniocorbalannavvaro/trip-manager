@@ -83,7 +83,7 @@ router.get("/invalidHostTypeEnum", async (req, res, next) => {
     `INSERT INTO host(trip_id, host_type)
     VALUES ($1, $2) RETURNING *;`,
     [1, "casa"],
-    "BIEN"
+    "DB TABLE trips host_type ENUM constraint have vulnerabilities"
   );
 });
 

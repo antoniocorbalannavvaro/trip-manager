@@ -1,0 +1,43 @@
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}====================${NC} ${GREEN}CRUD CREATE${NC} ${BLUE}====================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash create.sh
+printf "\n"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}====================${NC} ${GREEN}CRUD POST${NC} ${BLUE}======================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash post.sh
+printf "\n"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}====================${NC} ${GREEN}CRUD DELETE${NC} ${BLUE}====================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash delete.sh
+printf "\n"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}====================${NC} ${GREEN}CRUD UPDATE${NC} ${BLUE}====================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash update.sh
+printf "\n"

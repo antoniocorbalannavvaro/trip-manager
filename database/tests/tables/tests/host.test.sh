@@ -2,18 +2,24 @@
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
+CYAN='\033[1;36m'
+ORANGE='\033[0;33m'
+YELLOW='\e[93m'
 NC='\033[0m'
 #------------------------------------------
+printf "${CYAN}[DROP DB] ${NC}"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/dropDB' \
   -H 'accept: application/json'
 printf "\n"
 
+printf "${CYAN}[CREATE TABLES] ${NC}"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/createTables' \
   -H 'accept: application/json'
 printf "\n"
 
+printf "${CYAN}[POST DATA] ${NC}"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/crud/postData' \
   -H 'accept: application/json'
@@ -29,7 +35,7 @@ printf "=====================${NC}"
 printf "\n"
 printf "\n"
 
-printf "[create host]"
+printf "${CYAN}[CREATE HOST]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/createHost' \
@@ -37,7 +43,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[get all hostes]"
+printf "${CYAN}[GET ALL HOSTES]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/getAllHostes' \
@@ -45,7 +51,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[get host by id]"
+printf "${CYAN}[GET HOST BY ID]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/getHostById/9' \
@@ -53,7 +59,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[delete host by id]"
+printf "${CYAN}[DELETE HOST BY ID]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/deleteHostById/9' \
@@ -61,7 +67,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[update host by id]"
+printf "${CYAN}[UPDATE HOST BY ID]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/updateHostById/8' \
@@ -78,7 +84,11 @@ printf "===================${NC}"
 printf "\n"
 printf "\n"
 
-printf "[create host with no trip_id]"
+printf "${ORANGE}TODO:${NC} ${YELLOW}TEST UPDATE A HOST THAT DOESN'T EXIST${NC}"
+printf "\n"
+printf "\n"
+
+printf "${CYAN}[CREATE HOST WITH NO trip_id]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/createHostWithNoTripId' \
@@ -86,7 +96,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[invalid type enum for host_type]"
+printf "${CYAN}[INVALID TYPE ENUM FOR host_type]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/invalidHostTypeEnum' \
@@ -94,7 +104,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[host_name exceeds length constraint]"
+printf "${CYAN}[host_name EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/hostNameMaxLenght' \
@@ -102,7 +112,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[host_country exceeds length constraint]"
+printf "${CYAN}[host_country EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/hostCountryMaxLenght' \
@@ -110,7 +120,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[host_city exceeds length constraint]"
+printf "${CYAN}[host_city EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/hostCityMaxLenght' \
@@ -118,7 +128,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[host_address exceeds length constraint]"
+printf "${CYAN}[host_address EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/hostAddressMaxLenght' \
@@ -126,7 +136,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[room_num exceeds length constraint]"
+printf "${CYAN}[room_num EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/roomNumMaxLenght' \
@@ -134,7 +144,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[price exceeds length constraint]"
+printf "${CYAN}[price EXCEEDS NUMERIC PRECISION CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/priceMaxLenght' \
@@ -142,7 +152,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[commission exceeds length constraint]"
+printf "${CYAN}[commission EXCEEDS NUMERIC PRECISION CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/commissionMaxLenght' \
@@ -150,7 +160,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[amount_payed exceeds length constraint]"
+printf "${CYAN}[amount_payed EXCEEDS NUMERIC PRECISION CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/amountPayedMaxLenght' \
@@ -158,7 +168,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[additional_info exceeds length constraint]"
+printf "${CYAN}[additional_info EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/additionalInfoMaxLenght' \
@@ -166,7 +176,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[date_from incorrect type]"
+printf "${CYAN}[date_from INVALID TYPE]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/dateFromType' \
@@ -174,7 +184,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[date_to incorrect type]"
+printf "${CYAN}[date_to INVALID TYPE]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/host/dateToType' \

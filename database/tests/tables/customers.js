@@ -212,4 +212,14 @@ router.get("/phoneLengthConstraint", async (req, res, next) => {
   );
 });
 
+router.get("/updateNonExistCustomer", async (req, res, next) => {
+  await testDB(
+    res,
+    next,
+    `UPDATE customers SET phone = $1 WHERE customer_id = $2 RETURNING *;`,
+    ["new number", 1000],
+    "DB TABLE customers UPDATE_METHOD have vulnerabilities"
+  );
+});
+
 export default router;

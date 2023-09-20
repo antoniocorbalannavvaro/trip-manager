@@ -31,13 +31,13 @@ router.get("/createTables", async (req, res, next) => {
     CREATE OR REPLACE FUNCTION trigger_set_timestamp() RETURNS TRIGGER AS $$ BEGIN NEW.updated_at = NOW();
     RETURN NEW;
     END;
-    
+
     $$ LANGUAGE plpgsql;
-    
+
     CREATE TYPE gender_enum AS ENUM ('male', 'female', 'others');
-    
+
     CREATE TYPE trip_state_enum AS ENUM ('finalized', 'not started', 'ongoing');
-    
+
     CREATE TYPE host_type_enum AS ENUM (
       'hotel',
       'hostel',
@@ -52,7 +52,7 @@ router.get("/createTables", async (req, res, next) => {
       'resort',
       'motel'
     );
-    
+
     CREATE TYPE transport_type_enum AS ENUM (
       'long-distance train',
       'short-distance train',
@@ -68,8 +68,7 @@ router.get("/createTables", async (req, res, next) => {
       'cableway',
       'private jet'
     );
-    
-    
+
     CREATE TABLE IF NOT EXISTS users(
       user_id SERIAL PRIMARY KEY,
       user_name VARCHAR(50) NOT NULL UNIQUE,
@@ -80,11 +79,11 @@ router.get("/createTables", async (req, res, next) => {
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
-    
+
     CREATE TRIGGER set_timestamp BEFORE
     UPDATE
       ON users FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
-    
+
     -- CUSTOMERS:
     CREATE TABLE IF NOT EXISTS customers (
       customer_id SERIAL PRIMARY KEY,
@@ -100,11 +99,11 @@ router.get("/createTables", async (req, res, next) => {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE
     );
-    
+
     CREATE TRIGGER set_timestamp BEFORE
     UPDATE
       ON customers FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
-    
+
     -- TRIPS:
     CREATE TABLE IF NOT EXISTS trips (
       trip_id SERIAL,
@@ -116,11 +115,11 @@ router.get("/createTables", async (req, res, next) => {
       PRIMARY KEY(trip_id),
       CONSTRAINT fk_customer_id FOREIGN KEY(customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
     );
-    
+
     CREATE TRIGGER set_timestamp BEFORE
     UPDATE
       ON trips FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
-    
+
     -- HOST:
     CREATE TABLE IF NOT EXISTS host(
       host_id SERIAL PRIMARY KEY,
@@ -142,16 +141,16 @@ router.get("/createTables", async (req, res, next) => {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       CONSTRAINT fk_trip_id FOREIGN KEY(trip_id) REFERENCES trips(trip_id) ON DELETE CASCADE
     );
-    
+
     CREATE TRIGGER set_timestamp BEFORE
     UPDATE
       ON host FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
-    
+
     -- TRANSPORTATION:
     CREATE TABLE IF NOT EXISTS transportation(
       transportation_id SERIAL PRIMARY KEY,
       trip_id INT NOT NULL,
-      transportation_type transport_type_enum NULL,
+      transportation_type transport_type_enum NOT NULL,
       company VARCHAR(100) NULL,
       date_from TIMESTAMP NULL,
       date_to TIMESTAMP NULL,
@@ -167,16 +166,16 @@ router.get("/createTables", async (req, res, next) => {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       CONSTRAINT fk_trip_id FOREIGN KEY(trip_id) REFERENCES trips(trip_id) ON DELETE CASCADE
     );
-    
+
     CREATE TRIGGER set_timestamp BEFORE
     UPDATE
       ON transportation FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
-    
+
     -- ACTIVITIES:
     CREATE TABLE IF NOT EXISTS activities(
       activity_id SERIAL PRIMARY KEY,
       trip_id INT NOT NULL,
-      activity_description VARCHAR(500) NULL,
+      activity_description VARCHAR(250) NULL,
       company VARCHAR(100) NULL,
       date_from TIMESTAMP NULL,
       date_to TIMESTAMP NULL,
@@ -190,7 +189,7 @@ router.get("/createTables", async (req, res, next) => {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       CONSTRAINT fk_trip_id FOREIGN KEY(trip_id) REFERENCES trips(trip_id) ON DELETE CASCADE
     );
-    
+
     CREATE TRIGGER set_timestamp BEFORE
     UPDATE
     ON activities FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
@@ -199,5 +198,148 @@ router.get("/createTables", async (req, res, next) => {
     "create tables"
   );
 });
+
+// router.get("/createTables", async (req, res, next) => {
+//   // TEST TO GET ERRORS:
+
+//   await testDB(
+//     res,
+//     next,
+//     `
+//     CREATE OR REPLACE FUNCTION trigger_set_timestamp() RETURNS TRIGGER AS $$ BEGIN NEW.updated_at = NOW();
+//     RETURN NEW;
+//     END;
+
+//     $$ LANGUAGE plpgsql;
+
+//     CREATE TABLE IF NOT EXISTS users(
+//       user_id SERIAL PRIMARY KEY,
+//       user_name TEXT,
+//       email TEXT,
+//       password TEXT,
+//       gender TEXT,
+//       dni TEXT,
+//       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+//     );
+
+//     CREATE TRIGGER set_timestamp BEFORE
+//     UPDATE
+//       ON users FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
+
+//     -- CUSTOMERS:
+//     CREATE TABLE IF NOT EXISTS customers (
+//       customer_id SERIAL PRIMARY KEY,
+//       user_id INT NOT NULL,
+//       first_name TEXT,
+//       last_name TEXT,
+//       email TEXT,
+//       dni TEXT,
+//       phone_prefix TEXT,
+//       phone TEXT,
+//       gender TEXT,
+//       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE
+//     );
+
+//     CREATE TRIGGER set_timestamp BEFORE
+//     UPDATE
+//       ON customers FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
+
+//     -- TRIPS:
+//     CREATE TABLE IF NOT EXISTS trips (
+//       trip_id SERIAL,
+//       customer_id INT NOT NULL,
+//       description TEXT,
+//       state TEXT,
+//       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       PRIMARY KEY(trip_id),
+//       CONSTRAINT fk_customer_id FOREIGN KEY(customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
+//     );
+
+//     CREATE TRIGGER set_timestamp BEFORE
+//     UPDATE
+//       ON trips FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
+
+//     -- HOST:
+//     CREATE TABLE IF NOT EXISTS host(
+//       host_id SERIAL PRIMARY KEY,
+//       trip_id INT NOT NULL,
+//       host_type TEXT,
+//       host_name TEXT,
+//       host_country TEXT,
+//       host_city TEXT,
+//       host_address TEXT,
+//       room_num TEXT,
+//       date_from TEXT,
+//       date_to TEXT,
+//       price TEXT,
+//       commission TEXT,
+//       amount_payed TEXT,
+//       additional_info TEXT,
+//       receipt TEXT,
+//       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       CONSTRAINT fk_trip_id FOREIGN KEY(trip_id) REFERENCES trips(trip_id) ON DELETE CASCADE
+//     );
+
+//     CREATE TRIGGER set_timestamp BEFORE
+//     UPDATE
+//       ON host FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
+
+//     -- TRANSPORTATION:
+//     CREATE TABLE IF NOT EXISTS transportation(
+//       transportation_id SERIAL PRIMARY KEY,
+//       trip_id INT NOT NULL,
+//       transportation_type TEXT,
+//       company TEXT,
+//       date_from TEXT,
+//       date_to TEXT,
+//       location_from TEXT,
+//       location_to TEXT,
+//       seat TEXT,
+//       price TEXT,
+//       commission TEXT,
+//       amount_payed TEXT,
+//       additional_info TEXT,
+//       receipt TEXT,
+//       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       CONSTRAINT fk_trip_id FOREIGN KEY(trip_id) REFERENCES trips(trip_id) ON DELETE CASCADE
+//     );
+
+//     CREATE TRIGGER set_timestamp BEFORE
+//     UPDATE
+//       ON transportation FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
+
+//     -- ACTIVITIES:
+//     CREATE TABLE IF NOT EXISTS activities(
+//       activity_id SERIAL PRIMARY KEY,
+//       trip_id INT NOT NULL,
+//       activity_description TEXT,
+//       company TEXT,
+//       date_from TEXT,
+//       date_to TEXT,
+//       activitiy_location TEXT,
+//       price TEXT,
+//       commission TEXT,
+//       amount_payed TEXT,
+//       additional_info TEXT,
+//       receipt TEXT,
+//       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+//       CONSTRAINT fk_trip_id FOREIGN KEY(trip_id) REFERENCES trips(trip_id) ON DELETE CASCADE
+//     );
+
+//     CREATE TRIGGER set_timestamp BEFORE
+//     UPDATE
+//     ON activities FOR EACH ROW EXECUTE PROCEDURE trigger_set_timestamp();
+//     `,
+//     [],
+//     "create tables"
+//   );
+// });
 
 export default router;

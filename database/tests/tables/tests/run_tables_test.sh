@@ -1,0 +1,41 @@
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}===================${NC} ${GREEN}USERS TABLE${NC} ${BLUE}=====================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash users.test.sh
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}=================${NC} ${GREEN}CUSTOMERS TABLE${NC} ${BLUE}===================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash customers.test.sh
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}===================${NC} ${GREEN}TRIPS TABLE${NC} ${BLUE}=====================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash trips.test.sh
+printf "\n"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "${BLUE}===================${NC} ${GREEN}HOST TABLE${NC} ${BLUE}======================${NC}"
+printf "\n"
+printf "${BLUE}=====================================================${NC}"
+printf "\n"
+printf "\n"
+bash host.test.sh
+printf "\n"

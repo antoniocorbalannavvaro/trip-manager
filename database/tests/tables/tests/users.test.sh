@@ -1,19 +1,24 @@
 #! /bin/bash
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
+CYAN='\033[1;36m'
 RED='\033[0;31m'
+YELLOW='\e[93m'
 NC='\033[0m'
 #------------------------------------------
+printf "${CYAN}[DROP DB] ${NC}"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/dropDB' \
   -H 'accept: application/json'
-
 printf "\n"
 
+printf "${CYAN}[CREATE TABLES] ${NC}"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/createTables' \
   -H 'accept: application/json'
+printf "\n"
 
+printf "${CYAN}[POST DATA] ${NC}"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/crud/postData' \
   -H 'accept: application/json'
@@ -29,7 +34,7 @@ printf "=====================${NC}"
 printf "\n"
 printf "\n"
 
-printf "[create user]:"
+printf "${CYAN}[CREATE USER]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/createUsers' \
@@ -37,7 +42,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[select all users]:"
+printf "${CYAN}[SELECT ALL USERS]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/getUsers' \
@@ -45,7 +50,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[select user by id]:"
+printf "${CYAN}[SELECT USER BY ID]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/getUserById/2' \
@@ -53,7 +58,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[update user by id]:"
+printf "${CYAN}[UPDATE USER BY ID]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/updateUser' \
@@ -61,7 +66,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[delete user by id]:"
+printf "${CYAN}[DELETE USER BY ID]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/deleteUser' \
@@ -69,7 +74,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[users type contraint insert NUMERIC]:"
+printf "${CYAN}[USERS TYPE CONSTRAINT INSERT NUMERIC]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/usersTypeConstraintTryNumeric' \
@@ -77,7 +82,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[users type contraint insert BOOLEAN]:"
+printf "${CYAN}[USERS TYPE CONSTRAINT INSERT BOOLEAN]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/usersTypeConstraintTryBoolean' \
@@ -93,7 +98,7 @@ printf "===================${NC}"
 printf "\n"
 printf "\n"
 
-printf "[update non exists user]:"
+printf "${CYAN}[UPDATE NON EXISTS USER]${NC} ${YELLOW}res is not defined IT'S OK${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/updateNonExistUser' \
@@ -101,7 +106,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[users with same user_name]:"
+printf "${CYAN}[USERS WITH SAME user_name]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/uniqueUserName' \
@@ -109,7 +114,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[users with same email]:"
+printf "${CYAN}[USERS WITH SAME email]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/uniqueEmail' \
@@ -117,7 +122,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[users with same dni]:"
+printf "${CYAN}[USERS WITH SAME dni]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/uniqueDni' \
@@ -125,7 +130,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[create user with no user_name]:"
+printf "${CYAN}[CREATE USER WITH NO user_name]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/usernameRequired' \
@@ -133,7 +138,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[create user with no password]"
+printf "${CYAN}[CREATE USER WITH NO password]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/passwordRequired' \
@@ -141,7 +146,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[create user with no email]"
+printf "${CYAN}[CREATE USER WITH NO email]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/emailRequired' \
@@ -149,7 +154,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[user_name exceeds length constraint]"
+printf "${CYAN}[user_name EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/userNameMaxLenght' \
@@ -157,7 +162,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[email exceeds length constraint]"
+printf "${CYAN}[email EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/emailMaxLenght' \
@@ -165,7 +170,7 @@ curl -X 'GET' \
 printf "\n"
 printf "\n"
 
-printf "[dni exceeds length constraint]"
+printf "${CYAN}[dni EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/dniMaxLenght' \
@@ -173,7 +178,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[password exceeds length constraint]"
+printf "${CYAN}[password EXCEEDS LENGTH CONSTRAINT]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/passwordMaxLenght' \
@@ -181,7 +186,7 @@ curl -X 'GET' \
 printf "\n"
 
 printf "\n"
-printf "[invalid type enum for gender]"
+printf "${CYAN}[INVALID TYPE ENUM FOR gender]${NC}"
 printf "\n"
 curl -X 'GET' \
   'http://localhost:3000/test/DB/tables/users/enumConstraint' \
