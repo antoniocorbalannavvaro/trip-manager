@@ -1,24 +1,38 @@
 #! /bin/bash
-# DESCOMENTAR PARA HACER TEST POR SEPARADO:
-# bash ../../CRUD/tests/post.sh
-
-# COMENTAR PARA HACER TEST POR SEPARADO:
-bash ./CRUD/tests/post.sh
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+#------------------------------------------
+curl -X 'GET' \
+  'http://localhost:3000/test/DB/dropDB' \
+  -H 'accept: application/json'
 
 printf "\n"
+
+curl -X 'GET' \
+  'http://localhost:3000/test/DB/createTables' \
+  -H 'accept: application/json'
+
+curl -X 'GET' \
+  'http://localhost:3000/test/DB/crud/postData' \
+  -H 'accept: application/json'
+#------------------------------------------
+
+printf "${BLUE}\n"
 printf "\n"
 printf "====================="
 printf "\n"
-printf "|| MUST BE SUCCESS ||"
+printf "|| ${NC}${GREEN}MUST BE SUCCESS${NC}${BLUE} ||"
 printf "\n"
-printf "====================="
+printf "=====================${NC}"
 printf "\n"
 printf "\n"
 
 printf "[create customer]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/createCustomer' \
+  'http://localhost:3000/test/DB/tables/customers/createCustomer' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
@@ -26,7 +40,7 @@ printf "\n"
 printf "[get all customers]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/getAllCustomers' \
+  'http://localhost:3000/test/DB/tables/customers/getAllCustomers' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
@@ -34,39 +48,40 @@ printf "\n"
 printf "[get customer by id]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/getCustomerById' \
+  'http://localhost:3000/test/DB/tables/customers/getCustomerById' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[update customer]"
+printf "[update customer by id]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/updateCustomer' \
+  'http://localhost:3000/test/DB/tables/customers/updateCustomer' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[delete customer]"
+printf "[delete customer by id]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/deleteCustomer' \
+  'http://localhost:3000/test/DB/tables/customers/deleteCustomer' \
   -H 'accept: application/json'
 printf "\n"
 
 printf "\n"
-printf "==================="
 printf "\n"
-printf "|| MUST BE ERROR ||"
+printf "${BLUE}==================="
 printf "\n"
-printf "==================="
+printf "|| ${NC}${RED}MUST BE ERROR${NC}${BLUE} ||"
+printf "\n"
+printf "===================${NC}"
 printf "\n"
 printf "\n"
 
 printf "[create customer with no fk_user_id]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/userIdRequired' \
+  'http://localhost:3000/test/DB/tables/customers/userIdRequired' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
@@ -74,7 +89,7 @@ printf "\n"
 printf "[customer with no email]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/emailRequired' \
+  'http://localhost:3000/test/DB/tables/customers/emailRequired' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
@@ -82,7 +97,7 @@ printf "\n"
 printf "[customers with same email]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/uniqueEmail' \
+  'http://localhost:3000/test/DB/tables/customers/uniqueEmail' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
@@ -90,7 +105,7 @@ printf "\n"
 printf "[customers with same dni]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/uniqueDni' \
+  'http://localhost:3000/test/DB/tables/customers/uniqueDni' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
@@ -98,55 +113,55 @@ printf "\n"
 printf "[customers with same phone]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/uniquePhone' \
+  'http://localhost:3000/test/DB/tables/customers/uniquePhone' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[first_name MAX LENGTH CONSTRAINT]"
+printf "[first_name exceeds length constraint]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/firstNamelengthConstraint' \
+  'http://localhost:3000/test/DB/tables/customers/firstNamelengthConstraint' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[last_name MAX LENGTH CONSTRAINT]"
+printf "[last_name exceeds length constraint]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/lastNamelengthConstraint' \
+  'http://localhost:3000/test/DB/tables/customers/lastNamelengthConstraint' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[email MAX LENGTH CONSTRAINT]"
+printf "[email exceeds length constraint]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/emailLengthConstraint' \
+  'http://localhost:3000/test/DB/tables/customers/emailLengthConstraint' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[dni MAX LENGTH CONSTRAINT]"
+printf "[dni exceeds length constraint]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/dniLengthConstraint' \
+  'http://localhost:3000/test/DB/tables/customers/dniLengthConstraint' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[phone_prefix MAX LENGTH CONSTRAINT]"
+printf "[phone_prefix exceeds length constraint]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/prefixLengthConstraint' \
+  'http://localhost:3000/test/DB/tables/customers/prefixLengthConstraint' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"
 
-printf "[phone MAX LENGTH CONSTRAINT]"
+printf "[phone exceeds length constraint]"
 printf "\n"
 curl -X 'GET' \
-  'http://localhost:3000/test/tables/customers/phoneLengthConstraint' \
+  'http://localhost:3000/test/DB/tables/customers/phoneLengthConstraint' \
   -H 'accept: application/json'
 printf "\n"
 printf "\n"

@@ -2,7 +2,6 @@ import { Router } from "express";
 import { testDB } from "../libs/testDB.js";
 
 const router = Router();
-// await (testDB(res, next, ``, [], ''));
 
 router.get("/createCustomer", async (req, res, next) => {
   await testDB(

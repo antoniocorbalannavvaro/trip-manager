@@ -1,6 +1,5 @@
 import { Router } from "express";
-import pool from "../../src/db.js";
-import { testDB, testDBnoLog } from "./libs/testDB.js";
+import { testDB } from "./libs/testDB.js";
 
 const router = Router();
 
@@ -135,7 +134,7 @@ router.get("/createTables", async (req, res, next) => {
       date_from TIMESTAMP NULL,
       date_to TIMESTAMP NULL,
       price NUMERIC(10, 2) NULL,
-      commission NUMERIC(4, 2) NULL,
+      commission NUMERIC(5, 2) NULL,
       amount_payed NUMERIC(10,2) NULL,
       additional_info VARCHAR(500) NULL,
       receipt BYTEA NULL,
@@ -160,7 +159,7 @@ router.get("/createTables", async (req, res, next) => {
       location_to VARCHAR(100) NULL,
       seat VARCHAR (50) NULL,
       price NUMERIC(10, 2) NULL,
-      commission NUMERIC(4, 2) NULL,
+      commission NUMERIC(5, 2) NULL,
       amount_payed NUMERIC(10,2) NULL,
       additional_info VARCHAR(500) NULL,
       receipt BYTEA NULL,
@@ -183,7 +182,7 @@ router.get("/createTables", async (req, res, next) => {
       date_to TIMESTAMP NULL,
       activitiy_location VARCHAR(100) NULL,
       price NUMERIC(10, 2) NULL,
-      commission NUMERIC(4, 2) NULL,
+      commission NUMERIC(5, 2) NULL,
       amount_payed NUMERIC(10,2) NULL,
       additional_info VARCHAR(255) NULL,
       receipt BYTEA NULL,
