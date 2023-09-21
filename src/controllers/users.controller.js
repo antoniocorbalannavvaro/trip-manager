@@ -5,7 +5,7 @@ export const getAllUsers = async (req, res, next) => {
     const result = await pool.query("SELECT * FROM users;");
     if (result.rowCount === 0) {
       res.status(403).json({
-        message: "No users yet",
+        error: "No users yet",
       });
     }
     res.status(200).json(result.rows);
@@ -22,7 +22,7 @@ export const getUser = async (req, res, next) => {
     ]);
     if (result.rowCount === 0) {
       res.status(403).json({
-        message: `User with id ${userId} doesn't exist`,
+        error: `User with id ${userId} doesn't exist`,
       });
     }
     res.status(200).json(result.rows[0]);
@@ -34,16 +34,16 @@ export const getUser = async (req, res, next) => {
 export const createUser = async (req, res, next) => {
   try {
     const { userName, email, password, gender, dni } = req.body;
-    const newUser = await pool.query(
+    const result = await pool.query(
       "INSERT INTO users (user_name, email, password, gender, dni) VALUES ($1, $2, $3, $4, $5) RETURNING *;",
       [userName, email, password, gender, dni]
     );
     if (result.rowCount === 0) {
       res.status(403).json({
-        message: "Invalid values for create user",
+        error: "Invalid key or value to create user",
       });
     }
-    res.status(200).json({ user: newUser.rows[0] });
+    res.status(200).json(result.rows[0]);
   } catch (error) {
     next(error);
   }
@@ -58,13 +58,10 @@ export const deleteUser = async (req, res, next) => {
     );
     if (result.rowCount === 0) {
       res.status(403).json({
-        message: "User not found",
+        error: "User not found",
       });
     }
-    res.status(200).json({
-      message: "User deleted",
-      user: result.rows[0],
-    });
+    res.status(200).json(result.rows[0]);
   } catch (error) {
     next(error);
   }
@@ -86,15 +83,11 @@ export const updateUser = async (req, res, next) => {
 
     if (result.rowCount === 0 || userSelected.rowCount === 0) {
       res.status(403).json({
-        message: "User not found",
+        error: "User not found",
       });
     }
 
-    res.status(200).json({
-      message: "User successfully updated",
-      oldUser: userSelected.rows[0],
-      newUser: result.rows[0],
-    });
+    res.status(200).json(result.rows[0]);
   } catch (error) {
     next(error);
   }

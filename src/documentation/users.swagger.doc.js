@@ -3,7 +3,7 @@
  * @swagger
  * components:
  *  schemas:
- *    user:
+ *    users:
  *      type: object
  *      properties:
  *        userName:
@@ -31,6 +31,7 @@
  *        password: password123
  *        gender: male
  *        dni: 43546576F
+ *
  */
 
 //! ERRORS SCHEMA:
@@ -41,20 +42,65 @@
  *    error_get_users:
  *      type: object
  *      properties:
- *        message:
+ *        error:
  *          type: string
  *          description: error message
  *      example:
- *        message: No users yet
+ *        error: No users yet
  *
  *    error_get_user:
  *      type: object
  *      properties:
- *        message:
+ *        error:
  *          type: string
  *          description: error message
  *      example:
- *        message: User with id ${userId} doesn't exist
+ *        error: User with id ${userId} doesn't exist
+ *
+ *    error_post_user:
+ *      type: object
+ *      properties:
+ *        error:
+ *          type: string
+ *          description: error message
+ *      example:
+ *        error: Invalid key or value to create user
+ *
+ *    error_put_user:
+ *      type: object
+ *      properties:
+ *        error:
+ *          type: string
+ *          description: error message
+ *      example:
+ *        error: User not found
+ *
+ *    error_delete_user:
+ *      type: object
+ *      properties:
+ *        error:
+ *          type: string
+ *          description: error message
+ *      example:
+ *        error: User not found
+ *
+ *    error_post_duplicated_keys:
+ *      type: object
+ *      properties:
+ *        error:
+ *          type: string
+ *          description: error message
+ *      example:
+ *        error: duplicate key value violates unique constraint
+ *
+ *    error_put_duplicated_keys:
+ *      type: object
+ *      properties:
+ *        error:
+ *          type: string
+ *          description: error message
+ *      example:
+ *        error: duplicate key value violates unique constraint
  */
 
 //* GET ALL:
@@ -72,7 +118,7 @@
  *            schema:
  *              type: array
  *              items:
- *                $ref: '#/components/schemas/user'
+ *                $ref: '#/components/schemas/users'
  *      403:
  *        description: return an object.
  *        content:
@@ -99,12 +145,12 @@
  *        description: return an object
  *    responses:
  *      200:
- *        description: return an object with the users
+ *        description: return an object with an user
  *        content:
  *          application/json:
  *            schema:
  *              type: object
- *              $ref: '#/components/schemas/user'
+ *              $ref: '#/components/schemas/users'
  *      403:
  *        description: return an object.
  *        content:
@@ -128,10 +174,34 @@
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#/components/schemas/user'
+ *            $ref: '#/components/schemas/users'
  *    responses:
  *      200:
- *        description: return an object with the new user values.
+ *        description: return an object with the user posted
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/users'
+ *
+ *      403:
+ *        description: return an object.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/error_post_user'
+ *
+ *      404:
+ *        description: return an object.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/error_post_duplicated_keys'
  */
 
 //? PUT:
@@ -147,7 +217,7 @@
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#/components/schemas/user'
+ *            $ref: '#/components/schemas/users'
  *    parameters:
  *      - in: path
  *        name: id
@@ -157,14 +227,30 @@
  *        description: The user id you want to update
  *    responses:
  *      200:
- *        description: "{message: 'Success', oldUser: Data, newUser: data}"
+ *        description: return an object with the user updated
  *        content:
  *          application/json:
  *            schema:
  *              type: object
- *              $ref: '#/components/schemas/user'
+ *              $ref: '#/components/schemas/users'
+ *
+ *      403:
+ *        description: return an object.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/error_put_user'
+ *
  *      404:
- *        description: User not found
+ *        description: return an object.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/error_put_duplicated_keys'
  */
 
 //! DELETE:
@@ -183,12 +269,18 @@
  *        description: The user id you want to delete
  *    responses:
  *      200:
- *        description: return and object with a message an the deleted user.
+ *        description: return an object with the user deleted.
  *        content:
  *          application/json:
  *            schema:
  *              type: object
- *              $ref: '#/components/schemas/user'
- *      404:
- *        description: User not found
+ *              $ref: '#/components/schemas/users'
+ *      403:
+ *        description: return an object.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/error_delete_user'
  */
