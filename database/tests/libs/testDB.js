@@ -14,7 +14,7 @@ export async function testDB(
     }
     response.status(200).json({
       success: message,
-      // result: result.rows,
+      result: result.rows,
     });
   } catch (error) {
     nextFunction(error);

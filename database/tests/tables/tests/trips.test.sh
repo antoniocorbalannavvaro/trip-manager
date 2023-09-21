@@ -6,105 +6,48 @@ CYAN='\033[1;36m'
 ORANGE='\033[0;33m'
 YELLOW='\e[93m'
 NC='\033[0m'
+
 #------------------------------------------
-printf "${CYAN}[DROP DB] ${NC}"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/dropDB' \
-  -H 'accept: application/json'
-printf "\n"
+printf "${CYAN}[DROP DB] ${NC} "
+curl 'http://localhost:3000/test/DB/dropDB'
 
-printf "${CYAN}[CREATE TABLES] ${NC}"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/createTables' \
-  -H 'accept: application/json'
-printf "\n"
+printf "\n${CYAN}[CREATE TABLES] ${NC} "
+curl 'http://localhost:3000/test/DB/createTables'
 
-printf "${CYAN}[POST DATA] ${NC}"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/crud/postData' \
-  -H 'accept: application/json'
+printf "\n${CYAN}[POST DATA] ${NC} "
+curl 'http://localhost:3000/test/DB/crud/postData'
 #------------------------------------------
 
-printf "${BLUE}\n"
-printf "\n"
-printf "====================="
-printf "\n"
-printf "|| ${NC}${GREEN}MUST BE SUCCESS${NC}${BLUE} ||"
-printf "\n"
-printf "=====================${NC}"
-printf "\n"
-printf "\n"
+printf "\n${BLUE}\n====================="
+printf "\n|| ${NC}${GREEN}MUST BE SUCCESS${NC}${BLUE} ||"
+printf "\n=====================${NC}"
 
-printf "${CYAN}[CREATE TRIP]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/createTrip' \
-  -H 'accept: application/json'
-printf "\n"
-printf "\n"
+printf "\n\n${CYAN}[CREATE TRIP]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/createTrip'
 
-printf "${CYAN}[GET ALL TRIPS]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/getAllTrips' \
-  -H 'accept: application/json'
-printf "\n"
-printf "\n"
+printf "\n\n${CYAN}[GET ALL TRIPS]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/getAllTrips'
 
-printf "${CYAN}[GET TRIP BY ID]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/getTripById' \
-  -H 'accept: application/json'
-printf "\n"
-printf "\n"
+printf "\n\n${CYAN}[GET TRIP BY ID]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/getTripById'
 
-printf "${CYAN}[UPDATE TRIP]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/updateTrip' \
-  -H 'accept: application/json'
-printf "\n"
-printf "\n"
+printf "\n\n${CYAN}[UPDATE TRIP]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/updateTrip'
 
-printf "${CYAN}[DELETE TRIP]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/deleteTrip' \
-  -H 'accept: application/json'
+printf "\n\n${CYAN}[DELETE TRIP]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/deleteTrip'
 
-printf "\n"
-printf "\n"
-printf "${BLUE}==================="
-printf "\n"
-printf "|| ${NC}${RED}MUST BE ERROR${NC}${BLUE} ||"
-printf "\n"
+printf "\n\n${BLUE}===================\n"
+printf "|| ${NC}${RED}MUST BE ERROR${NC}${BLUE} ||\n"
 printf "===================${NC}"
-printf "\n"
-printf "\n"
-printf "${ORANGE}TODO:${NC} ${YELLOW}TEST UPDATE A TRIP THAT DOESN'T EXIST${NC}"
-printf "\n"
-printf "\n"
 
-printf "${CYAN}[CREATE TRIP WITH NO customer_id]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/createWithNoUserId' \
-  -H 'accept: application/json'
-printf "\n"
-printf "\n"
+printf "\n\n${ORANGE}TODO:${NC} ${YELLOW}TEST UPDATE A TRIP THAT DOESN'T EXIST${NC}"
 
-printf "${CYAN}[description EXCEEDS LENGTH CONSTRAINT]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/descriptionMaxLength' \
-  -H 'accept: application/json'
-printf "\n"
-printf "\n"
+printf "\n\n${CYAN}[CREATE TRIP WITH NO customer_id]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/createWithNoUserId'
 
-printf "${CYAN}[INVALID TYPE ENUM FOR state]${NC}"
-printf "\n"
-curl -X 'GET' \
-  'http://localhost:3000/test/DB/tables/trips/stateEnumContraint' \
-  -H 'accept: application/json'
-printf "\n"
+printf "\n\n${CYAN}[description EXCEEDS LENGTH CONSTRAINT]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/descriptionMaxLength'
+
+printf "\n\n${CYAN}[INVALID TYPE ENUM FOR state]${NC}\n"
+curl 'http://localhost:3000/test/DB/tables/trips/stateEnumContraint'
