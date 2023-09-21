@@ -22,10 +22,10 @@ export const getUser = async (req, res, next) => {
     ]);
     if (result.rowCount === 0) {
       res.status(403).json({
-        message: `User with id ${userId} doesn't exists`,
+        message: `User with id ${userId} doesn't exist`,
       });
     }
-    res.status(200).json(result.rows);
+    res.status(200).json(result.rows[0]);
   } catch (error) {
     next(error);
   }
@@ -38,6 +38,11 @@ export const createUser = async (req, res, next) => {
       "INSERT INTO users (user_name, email, password, gender, dni) VALUES ($1, $2, $3, $4, $5) RETURNING *;",
       [userName, email, password, gender, dni]
     );
+    if (result.rowCount === 0) {
+      res.status(403).json({
+        message: "Invalid values for create user",
+      });
+    }
     res.status(200).json({ user: newUser.rows[0] });
   } catch (error) {
     next(error);

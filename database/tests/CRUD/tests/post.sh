@@ -20,4 +20,3 @@ printf "\n"
 
 printf "${CYAN}[POST DATA] ${NC}"
 curl 'http://localhost:3000/test/DB/crud/postData'
-  

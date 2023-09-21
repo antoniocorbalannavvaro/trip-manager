@@ -17,7 +17,7 @@ $$ LANGUAGE plpgsql;
 
 CREATE TYPE gender_enum AS ENUM ('male', 'female', 'others');
 
-CREATE TYPE trip_state_enum AS ENUM ('finalized', 'Not started', 'ongoing');
+CREATE TYPE trip_state_enum AS ENUM ('finalized', 'not started', 'ongoing');
 
 CREATE TYPE host_type_enum AS ENUM (
   'hotel',
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS users(
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(50) NOT NULL,
   gender gender_enum NULL,
-  dni VARCHAR(10) NULL UNIQUE,
+  dni VARCHAR(15) NULL UNIQUE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS host(
   date_from TIMESTAMP NULL,
   date_to TIMESTAMP NULL,
   price NUMERIC(10, 2) NULL,
-  commission NUMERIC(4, 2) NULL,
+  commission NUMERIC(5, 2) NULL,
   amount_payed NUMERIC(10,2) NULL,
   additional_info VARCHAR(500) NULL,
   receipt BYTEA NULL,
@@ -131,7 +131,7 @@ UPDATE
 CREATE TABLE IF NOT EXISTS transportation(
   transportation_id SERIAL PRIMARY KEY,
   trip_id INT NOT NULL,
-  transportation_type transport_type_enum NULL,
+  transportation_type transport_type_enum NOT NULL,
   company VARCHAR(100) NULL,
   date_from TIMESTAMP NULL,
   date_to TIMESTAMP NULL,
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS transportation(
   location_to VARCHAR(100) NULL,
   seat VARCHAR (50) NULL,
   price NUMERIC(10, 2) NULL,
-  commission NUMERIC(4, 2) NULL,
+  commission NUMERIC(5, 2) NULL,
   amount_payed NUMERIC(10,2) NULL,
   additional_info VARCHAR(500) NULL,
   receipt BYTEA NULL,
@@ -156,13 +156,13 @@ UPDATE
 CREATE TABLE IF NOT EXISTS activities(
   activity_id SERIAL PRIMARY KEY,
   trip_id INT NOT NULL,
-  activity_description VARCHAR(500) NULL,
+  activity_description VARCHAR(250) NULL,
   company VARCHAR(100) NULL,
   date_from TIMESTAMP NULL,
   date_to TIMESTAMP NULL,
   activitiy_location VARCHAR(100) NULL,
   price NUMERIC(10, 2) NULL,
-  commission NUMERIC(4, 2) NULL,
+  commission NUMERIC(5, 2) NULL,
   amount_payed NUMERIC(10,2) NULL,
   additional_info VARCHAR(255) NULL,
   receipt BYTEA NULL,
