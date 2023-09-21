@@ -4,11 +4,14 @@
 [0;34m=====================================================[0m
 
 [0;34m=====================
-|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+||[0m[0;32mMUST BE SUCCESS[0m[0;34m ||
 =====================[0m
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[DROP DB] [0m
+{"success":"drop all tables"}
+
+[1;36m[CREATE TABLES] [0m
+{"success":"create tables"}
 
 [1;36m[CREATE USER][0m
 {"success":"USER CREATED"}
@@ -66,44 +69,44 @@
 || [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
 =====================[0m
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
 
 [1;36m[DELETE USER] [0m
 {"success":"USER DELETED"}
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
 
 [1;36m[DELETE CUSTOMER] [0m
 {"success":"CUSTOMER DELETED"}
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
 
 [1;36m[DELETE TRIP] [0m
 {"success":"TRIP DELETED"}
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
 
 [1;36m[DELETE HOST] [0m
 {"success":"HOST DELETED"}
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
 
 [1;36m[DELETE TRANSPORTATION] [0m
 {"success":"TRANSPORTATION DELETED"}
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
 
 [1;36m[DELETE ACTIVITY] [0m
 {"success":"ACTIVITY DELETED"}
@@ -120,9 +123,10 @@
 [1;36m[CREATE TABLES] [0m{"success":"create tables"}
 [1;36m[POST DATA] [0m{"success":"Post data"}
 
-[1;36m[UPDATE USER] [0m[93mCan return null if log desactivated[0m
+[1;36m[UPDATE user_name] [0m[93mCan return null if log desactivated[0m 
+
 [0;33mBEFORE:[0m null
-{"success":"update user name"}
+[1;36mRESPONSE:[0m null
 [0;34mAFTER:[0m null
 
 [0;34m=====================================================[0m
@@ -131,8 +135,8 @@
 
 [1;36m[DROP DB] [0m{"success":"drop all tables"}
 [1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
-
+[1;36m[POST DATA] [0m{"success":"Post data"}
+[0;34m
 =====================
 || [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
 =====================[0m
@@ -202,9 +206,9 @@
 [0;34m=================[0m [0;32mCUSTOMERS TABLE[0m [0;34m===================[0m
 [0;34m=====================================================[0m
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}[0;34m
 
 =====================
 || [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
@@ -224,7 +228,6 @@
 
 [1;36m[DELETE CUSTOMER BY ID][0m
 {"success":"delete user"}
-
 
 [0;34m===================
 || [0m[0;31mMUST BE ERROR[0m[0;34m ||
@@ -266,15 +269,14 @@
 [1;36m[phone EXCEEDS LENGTH CONSTRAINT][0m
 {"success":"DB TABLE customers phone MAX_LENGTH contraint have vulnerabilities"}
 
-
 [0;34m=====================================================[0m
 [0;34m===================[0m [0;32mTRIPS TABLE[0m [0;34m=====================[0m
 [0;34m=====================================================[0m
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
-
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
+[0;34m
 =====================
 || [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
 =====================[0m
@@ -309,15 +311,14 @@
 [1;36m[INVALID TYPE ENUM FOR state][0m
 {"success":"DB TABLE trips state ENUM constraint have vulnerabilities"}
 
-
 [0;34m=====================================================[0m
 [0;34m===================[0m [0;32mHOST TABLE[0m [0;34m======================[0m
 [0;34m=====================================================[0m
 
-[1;36m[DROP DB] [0m{"success":"drop all tables"}
-[1;36m[CREATE TABLES] [0m{"success":"create tables"}
-[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
-
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
+[0;34m
 =====================
 || [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
 =====================[0m
@@ -382,4 +383,141 @@
 [1;36m[date_to INVALID TYPE][0m
 {"success":"DB TABLE host date_to TYPE constraint have vulnerabilities"}
 
+
+[0;34m=====================================================[0m
+[0;34m==============[0m [0;32mTRANSPORTATION TABLE[0m [0;34m=================[0m
+[0;34m=====================================================[0m
+
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
+[0;34m
+=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[CREATE TRANSPORTATION][0m
+{"success":"create transportation"}
+
+[1;36m[GET ALL TRANSPORTATIONS][0m
+{"success":"get all transportation"}
+
+[1;36m[GET TRANSPORTATION BY ID][0m
+{"success":"get transportation by id"}
+
+[1;36m[UPDATE TRANSPORTATION BY ID][0m
+{"success":"update transportation by id"}
+
+[1;36m[DELETE TRANSPORTATION BY ID][0m
+{"success":"delete transportation by id"}
+
+[0;34m===================
+|| [0m[0;31mMUST BE ERROR[0m[0;34m ||
+===================[0m
+
+[0;33mTODO:[0m [93mTEST UPDATE A TRANSPORTATION THAT DOESN'T EXIST[0m
+
+[1;36m[TRANSPORTATION WITH NO trip_id][0m
+{"error":"null value in column \"trip_id\" of relation \"transportation\" violates not-null constraint"}
+
+[1;36m[TRANSPORTATION WITH NO transportation_type][0m
+{"success":"DB TABLE transportation transportation_type NOT NULL constraint have vulnerabilities"}
+
+[1;36m[NO VALID ENUM FOR transportation_type][0m
+{"success":"DB TABLE transportation transportation_type ENUM constraint have vulnerabilities"}
+
+[1;36m[company EXCEEDS LENGTH CONTRAINT][0m
+{"success":"DB TABLE transportation company MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[location_from EXCEEDS LENGTH CONTRAINT][0m
+{"success":"DB TABLE transportation location_from MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[location_to EXCEEDS LENGTH CONTRAINT][0m
+{"success":"DB TABLE transportation location_to MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[seat EXCEEDS LENGTH CONTRAINT][0m
+{"success":"DB TABLE transportation seat MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[addition_info EXCEEDS LENGTH CONTRAINT][0m
+{"success":"DB TABLE transportation additional_info MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[price EXCEEDS NUMERIC PRECISION CONTRAINT][0m
+{"success":"DB TABLE transportation price MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[commission EXCEEDS NUMERIC PRECISION CONTRAINT][0m
+{"success":"DB TABLE transportation commission MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[amout_payed EXCEEDS NUMERIC PRECISION CONTRAINT][0m
+{"success":"DB TABLE transportation amount_payed MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[date_from INVALID TYPE][0m
+{"success":"DB TABLE transportation date_from TYPE constraint have vulnerabilities"}
+
+[1;36m[date_to INVALID TYPE][0m
+{"success":"DB TABLE transportation date_to TYPE constraint have vulnerabilities"}
+
+
+[0;34m=====================================================[0m
+[0;34m================[0m [0;32mACTIVITIES TABLE[0m [0;34m===================[0m
+[0;34m=====================================================[0m
+
+[1;36m[DROP DB] [0m {"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m {"success":"create tables"}
+[1;36m[POST DATA] [0m {"success":"Post data"}
+[0;34m
+=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[CREATE ACTIVITY][0m
+{"success":"create activity"}
+
+[1;36m[GET ALL ACTIVITIES][0m
+{"success":"get all activities"}
+
+[1;36m[GET ACTIVITY BY ID][0m
+{"success":"get activity by id"}
+
+[1;36m[UPDATE ACTIVITY BY ID][0m
+{"success":"update activity by id"}
+
+[1;36m[DELETE ACTIVITY BY ID][0m
+{"success":"update activity by id"}
+
+[0;34m===================
+|| [0m[0;31mMUST BE ERROR[0m[0;34m ||
+===================[0m
+
+[1;36m[UPDATE AN ACTIVITY THAT DOESN'T EXISTS][0m [93mres is not defined IT'S OK[0m
+{"error":"res is not defined"}
+
+[1;36m[ACTIVITY WITH NO trip_id][0m
+{"error":"null value in column \"trip_id\" of relation \"activities\" violates not-null constraint"}
+
+[1;36m[description EXCEEDS LENGHT][0m
+{"success":"DB TABLE activities activity_description MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[company EXCEEDS LENGHT][0m
+{"success":"DB TABLE activities activity_description MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[location EXCEEDS LENGHT][0m
+{"success":"DB TABLE activities activitiy_location MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[additional_info EXCEEDS LENGHT][0m
+{"success":"DB TABLE activities additional_info MAX_LENGTH constraint have vulnerabilities"}
+
+[1;36m[price EXCEEDS LENGHT][0m
+{"success":"DB TABLE activities price NUMERIC PRECISION constraint have vulnerabilities"}
+
+[1;36m[commission EXCEEDS LENGHT][0m
+{"success":"DB TABLE activities commission NUMERIC PRECISION constraint have vulnerabilities"}
+
+[1;36m[amount_payed EXCEEDS LENGHT][0m
+{"success":"DB TABLE activities amount_payed NUMERIC PRECISION constraint have vulnerabilities"}
+
+[1;36m[date_to INVALID TYPE][0m
+{"success":"DB TABLE activities date_to TYPE constraint have vulnerabilities"}
+
+[1;36m[date_from INVALID TYPE][0m
+{"success":"DB TABLE activities date_from TYPE constraint have vulnerabilities"}
 
