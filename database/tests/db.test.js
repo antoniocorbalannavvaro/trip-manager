@@ -24,6 +24,7 @@ router.get("/dropDB", async (req, res, next) => {
 });
 
 router.get("/createTables", async (req, res, next) => {
+  //   // TEST TO CREATE DATABASE:
   await testDB(
     res,
     next,

@@ -1,0 +1,385 @@
+
+[0;34m=====================================================[0m
+[0;34m====================[0m [0;32mCRUD CREATE[0m [0;34m====================[0m
+[0;34m=====================================================[0m
+
+[0;34m=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+
+[1;36m[CREATE USER][0m
+{"success":"USER CREATED"}
+
+[1;36m[CREATE CUSTOMER][0m
+{"success":"CUSTOMER CREATED"}
+
+[1;36m[CREATE TRIP][0m
+{"success":"TRIP CREATED"}
+
+[1;36m[CREATE HOST][0m
+{"success":"HOST CREATED"}
+
+[1;36m[CREATE TRANSPORTATION 1][0m
+{"success":"TRANSPORTATION 1 CREATED"}
+
+[1;36m[CREATE TRANSPORTATION 2][0m
+{"success":"TRANSPORTATION 2 CREATED"}
+
+[1;36m[CREATE ACTIVITY 1][0m
+{"success":"ACTIVITY 1 CREATED"}
+
+[1;36m[CREATE ACTIVITY 2][0m
+{"success":"ACTIVITY 2 CREATED"}
+
+[1;36m[CREATE INVOICE][0m
+{"success":"GET INVOICE"}
+
+[1;36m[CREATE INVOICE AMOUNT][0m
+{"success":"GET INVOICE AMOUNT"}
+
+[1;36m[CREATE INVOICE AMOUNT PENDING][0m
+{"success":"AMOUNT PENDING"}
+
+[1;36m[CREATE COMMISSION AMOUNT][0m
+{"success":"GET COMMISSION AMOUNT"}
+
+[0;34m=====================================================[0m
+[0;34m====================[0m [0;32mCRUD POST[0m [0;34m======================[0m
+[0;34m=====================================================[0m
+
+[0;34m=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[0;34m=====================================================[0m
+[0;34m====================[0m [0;32mCRUD DELETE[0m [0;34m====================[0m
+[0;34m=====================================================[0m
+
+[0;34m=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[1;36m[DELETE USER] [0m
+{"success":"USER DELETED"}
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[1;36m[DELETE CUSTOMER] [0m
+{"success":"CUSTOMER DELETED"}
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[1;36m[DELETE TRIP] [0m
+{"success":"TRIP DELETED"}
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[1;36m[DELETE HOST] [0m
+{"success":"HOST DELETED"}
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[1;36m[DELETE TRANSPORTATION] [0m
+{"success":"TRANSPORTATION DELETED"}
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[1;36m[DELETE ACTIVITY] [0m
+{"success":"ACTIVITY DELETED"}
+
+[0;34m=====================================================[0m
+[0;34m====================[0m [0;32mCRUD UPDATE[0m [0;34m====================[0m
+[0;34m=====================================================[0m
+
+[0;34m=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}
+
+[1;36m[UPDATE USER] [0m[93mCan return null if log desactivated[0m
+[0;33mBEFORE:[0m null
+{"success":"update user name"}
+[0;34mAFTER:[0m null
+
+[0;34m=====================================================[0m
+[0;34m===================[0m [0;32mUSERS TABLE[0m [0;34m=====================[0m
+[0;34m=====================================================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
+
+=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[CREATE USER][0m
+{"success":"create user"}
+
+[1;36m[SELECT ALL USERS][0m
+{"success":"get all users"}
+
+[1;36m[SELECT USER BY ID][0m
+{"success":"get user by id"}
+
+[1;36m[UPDATE USER BY ID][0m
+{"success":"update user"}
+
+[1;36m[DELETE USER BY ID][0m
+{"success":"delete users"}
+
+[1;36m[USERS TYPE CONSTRAINT INSERT NUMERIC][0m
+{"success":"Parsing type NUMERIC to VARCHAR"}
+
+[1;36m[USERS TYPE CONSTRAINT INSERT BOOLEAN][0m
+{"success":"Parsing type BOOLEAN to VARCHAR"}
+
+[0;34m===================
+|| [0m[0;31mMUST BE ERROR[0m[0;34m ||
+===================[0m
+
+[1;36m[UPDATE NON EXISTS USER][0m [93mres is not defined IT'S OK[0m
+{"error":"res is not defined"}
+
+[1;36m[USERS WITH SAME user_name][0m
+{"error":"duplicate key value violates unique constraint \"users_user_name_key\""}
+
+[1;36m[USERS WITH SAME email][0m
+{"error":"duplicate key value violates unique constraint \"users_email_key\""}
+
+[1;36m[USERS WITH SAME dni][0m
+{"error":"duplicate key value violates unique constraint \"users_dni_key\""}
+
+[1;36m[CREATE USER WITH NO user_name][0m
+{"error":"null value in column \"user_name\" of relation \"users\" violates not-null constraint"}
+
+[1;36m[CREATE USER WITH NO password][0m
+{"error":"null value in column \"password\" of relation \"users\" violates not-null constraint"}
+
+[1;36m[CREATE USER WITH NO email][0m
+{"error":"null value in column \"email\" of relation \"users\" violates not-null constraint"}
+
+[1;36m[user_name EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(50)"}
+
+[1;36m[email EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(100)"}
+
+[1;36m[dni EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(15)"}
+
+[1;36m[password EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(50)"}
+
+[1;36m[INVALID TYPE ENUM FOR gender][0m
+{"error":"invalid input value for enum gender_enum: \"no valid gender inserted\""}
+
+[0;34m=====================================================[0m
+[0;34m=================[0m [0;32mCUSTOMERS TABLE[0m [0;34m===================[0m
+[0;34m=====================================================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
+
+=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[CREATE CUSTOMER][0m
+{"success":"create customer"}
+
+[1;36m[GET ALL CUSTOMERS][0m
+{"success":"get all customers"}
+
+[1;36m[GET CUSTOMER BY ID][0m
+{"success":"get customer by id"}
+
+[1;36m[UPDATE CUSTOMER BY ID][0m
+{"success":"update customer"}
+
+[1;36m[DELETE CUSTOMER BY ID][0m
+{"success":"delete user"}
+
+
+[0;34m===================
+|| [0m[0;31mMUST BE ERROR[0m[0;34m ||
+===================[0m
+
+[1;36m[UPDATE A CUSTOMER THAT DOESN'T EXISTS][0m [93mres is not defined IT'S OK[0m
+{"error":"res is not defined"}
+
+[1;36m[CREATE CUSTOMER WITH NO fk_user_id][0m
+{"error":"null value in column \"user_id\" of relation \"customers\" violates not-null constraint"}
+
+[1;36m[CUSTOMER WITH NO email][0m
+{"error":"null value in column \"email\" of relation \"customers\" violates not-null constraint"}
+
+[1;36m[CUSTOMER WITH SAME email][0m
+{"error":"duplicate key value violates unique constraint \"customers_email_key\""}
+
+[1;36m[CUSTOMER WITH SAME dni][0m
+{"error":"duplicate key value violates unique constraint \"customers_dni_key\""}
+
+[1;36m[CUSTOMER WITH SAME phone][0m
+{"error":"duplicate key value violates unique constraint \"customers_phone_key\""}
+
+[1;36m[first_name EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(50)"}
+
+[1;36m[last_name EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(100)"}
+
+[1;36m[email EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(100)"}
+
+[1;36m[dni EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(20)"}
+
+[1;36m[phone_prefix EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(3)"}
+
+[1;36m[phone EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(20)"}
+
+
+[0;34m=====================================================[0m
+[0;34m===================[0m [0;32mTRIPS TABLE[0m [0;34m=====================[0m
+[0;34m=====================================================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
+
+=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[CREATE TRIP][0m
+{"success":"create trip"}
+
+[1;36m[GET ALL TRIPS][0m
+{"success":"get all trip"}
+
+[1;36m[GET TRIP BY ID][0m
+{"success":"get all trip"}
+
+[1;36m[UPDATE TRIP][0m
+{"success":"update trip"}
+
+[1;36m[DELETE TRIP][0m
+{"success":"delete trip"}
+
+[0;34m===================
+|| [0m[0;31mMUST BE ERROR[0m[0;34m ||
+===================[0m
+
+[0;33mTODO:[0m [93mTEST UPDATE A TRIP THAT DOESN'T EXIST[0m
+
+[1;36m[CREATE TRIP WITH NO customer_id][0m
+{"error":"null value in column \"customer_id\" of relation \"trips\" violates not-null constraint"}
+
+[1;36m[description EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(255)"}
+
+[1;36m[INVALID TYPE ENUM FOR state][0m
+{"error":"invalid input value for enum trip_state_enum: \"invalid trip_state_enum for state\""}
+
+
+[0;34m=====================================================[0m
+[0;34m===================[0m [0;32mHOST TABLE[0m [0;34m======================[0m
+[0;34m=====================================================[0m
+
+[1;36m[DROP DB] [0m{"success":"drop all tables"}
+[1;36m[CREATE TABLES] [0m{"success":"create tables"}
+[1;36m[POST DATA] [0m{"success":"Post data"}[0;34m
+
+=====================
+|| [0m[0;32mMUST BE SUCCESS[0m[0;34m ||
+=====================[0m
+
+[1;36m[CREATE HOST][0m
+{"success":""}
+
+[1;36m[GET ALL HOSTES][0m
+{"success":"BIEN"}
+
+[1;36m[GET HOST BY ID][0m
+{"success":"BIEN"}
+
+[1;36m[DELETE HOST BY ID][0m
+{"success":"BIEN"}
+
+[1;36m[UPDATE HOST BY ID][0m
+{"success":"BIEN"}
+
+[0;34m===================
+|| [0m[0;31mMUST BE ERROR[0m[0;34m ||
+===================[0m
+
+[0;33mTODO:[0m [93mTEST UPDATE A HOST THAT DOESN'T EXIST[0m
+
+[1;36m[CREATE HOST WITH NO trip_id][0m
+{"error":"null value in column \"trip_id\" of relation \"host\" violates not-null constraint"}
+
+[1;36m[INVALID TYPE ENUM FOR host_type][0m
+{"error":"invalid input value for enum host_type_enum: \"casa\""}
+
+[1;36m[host_name EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(50)"}
+
+[1;36m[host_country EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(50)"}
+
+[1;36m[host_city EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(50)"}
+
+[1;36m[host_address EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(200)"}
+
+[1;36m[room_num EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(50)"}
+
+[1;36m[price EXCEEDS NUMERIC PRECISION CONSTRAINT][0m
+{"error":"numeric field overflow"}
+
+[1;36m[commission EXCEEDS NUMERIC PRECISION CONSTRAINT][0m
+{"error":"numeric field overflow"}
+
+[1;36m[amount_payed EXCEEDS NUMERIC PRECISION CONSTRAINT][0m
+{"error":"numeric field overflow"}
+
+[1;36m[additional_info EXCEEDS LENGTH CONSTRAINT][0m
+{"error":"value too long for type character varying(500)"}
+
+[1;36m[date_from INVALID TYPE][0m
+{"error":"invalid input syntax for type timestamp: \"not a date from\""}
+
+[1;36m[date_to INVALID TYPE][0m
+{"error":"invalid input syntax for type timestamp: \"not a date to\""}
+
+
