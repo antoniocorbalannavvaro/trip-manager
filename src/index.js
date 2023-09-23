@@ -2,10 +2,13 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { requireAuth, checkUser } from "./middlewares/auth.js";
 import { API } from "./config.js";
 
 // CONTROLLER:
 import swaggerRoutes from "./routes/swagger.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+
 import userRoutes from "./routes/users.routes.js";
 import customerRoutes from "./routes/customers.routes.js";
 import tripRoutes from "./routes/trips.routes.js";
@@ -40,7 +43,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CONTROLLER:
-app.use("/api", customerRoutes);
+app.get("*", checkUser);
+app.use("/auth", authRoutes);
+app.use("/api", requireAuth, customerRoutes);
 app.use("/api", tripRoutes);
 app.use("/api", userRoutes);
 app.use("/api", hostRoutes);
@@ -57,6 +62,7 @@ app.use("/test/DB/tables/trips", tripTest);
 app.use("/test/DB/tables/host", hostTest);
 app.use("/test/DB/tables/transportation", transportationTest);
 app.use("/test/DB/tables/activities", activitiesTest);
+// app.use("/test/DB/tables/materilizedViews", invoicesTest);
 
 app.use("/test/DB/crud", postTest);
 app.use("/test/DB/crud", createTest);

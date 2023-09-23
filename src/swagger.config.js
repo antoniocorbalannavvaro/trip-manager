@@ -9,7 +9,7 @@ const swaggerSpec = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "node-postgres-api",
+      title: "VIAJESTION API",
       version: "1.0.0",
     },
     servers: [{ url: `${API.host}:${API.port}` }],

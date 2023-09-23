@@ -33,6 +33,8 @@ router.get("/createTables", async (req, res, next) => {
     res,
     next,
     `
+    CREATE EXTENSION pgcrypto;
+    
     CREATE OR REPLACE FUNCTION trigger_set_timestamp() RETURNS TRIGGER AS $$ BEGIN NEW.updated_at = NOW();
     RETURN NEW;
     END;
@@ -78,7 +80,7 @@ router.get("/createTables", async (req, res, next) => {
       user_id SERIAL PRIMARY KEY,
       user_name VARCHAR(50) NOT NULL UNIQUE,
       email VARCHAR(100) NOT NULL UNIQUE,
-      password VARCHAR(50) NOT NULL,
+      password VARCHAR(200) NOT NULL,
       gender gender_enum NULL,
       dni VARCHAR(15) NULL UNIQUE,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
