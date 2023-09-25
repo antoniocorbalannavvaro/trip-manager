@@ -1,3 +1,7 @@
+import Debug from "debug";
+const debug = Debug("app:init");
+import createError from "http-errors";
+
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -43,15 +47,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CONTROLLER:
-app.get("*", checkUser);
+app.use(checkUser);
+app.use(swaggerRoutes);
 app.use("/auth", authRoutes);
 app.use("/api", requireAuth, customerRoutes);
-app.use("/api", tripRoutes);
-app.use("/api", userRoutes);
-app.use("/api", hostRoutes);
-app.use("/api", transportationRoutes);
-app.use("/api", activitiesRoutes);
-app.use("", swaggerRoutes);
+app.use("/api", requireAuth, tripRoutes);
+app.use("/api", requireAuth, userRoutes);
+app.use("/api", requireAuth, hostRoutes);
+app.use("/api", requireAuth, transportationRoutes);
+app.use("/api", requireAuth, activitiesRoutes);
 
 // TESTS DB:
 app.use("/test/DB", dbTest);
@@ -69,16 +73,24 @@ app.use("/test/DB/crud", createTest);
 app.use("/test/DB/crud", deleteTest);
 app.use("/test/DB/crud", updateTest);
 
+app.get("/fayo", () => {
+  throw new Error("a avido un fayo");
+});
 // TEST API:
 // TODO
+app.use((req, res, next) => {
+  debug("route not found");
+  next(createError(404));
+});
 
 app.use((err, req, res, next) => {
-  return res.status(404).json({
+  debug("error handler");
+  return res.status(err.status || 500).json({
     error: err.message,
   });
 });
 
 app.listen(API.port);
-console.log(`Server running at [${API.host}:${API.port}]:`);
+debug(`Server running at [${API.host}:${API.port}]:`);
 
 export default app;

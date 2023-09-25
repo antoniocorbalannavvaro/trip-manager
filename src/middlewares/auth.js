@@ -7,14 +7,13 @@ export const requireAuth = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken) => {
       if (err) {
-        res.json({ message: "unauthorized user." });
+        res.json({ error: "unauthorized user." });
       } else {
-        console.log(decodedToken);
         next();
       }
     });
   } else {
-    res.json({ message: "unauthorized user" });
+    res.json({ error: "unauthorized user" });
   }
 };
 

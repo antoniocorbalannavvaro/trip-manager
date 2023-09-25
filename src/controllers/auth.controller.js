@@ -24,7 +24,7 @@ export const register = async (req, res, next) => {
       maxAge: maxAge * 1000,
     });
 
-    res.status(200).json(result.rows[0]);
+    res.status(200).json(token);
   } catch (error) {
     next(error);
   }
@@ -53,11 +53,6 @@ export const login = async (req, res, next) => {
       httpOnly: true,
       maxAge: maxAge * 1000,
     });
-
-    res.json(result.rows[0]);
-    if (result.rowCount === 0) {
-      res.status(403).json({ error: "invalid password or email" });
-    }
 
     res.status(200).json(result.rows[0]);
   } catch (error) {

@@ -1,6 +1,8 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import { API } from "./config.js";
+import Debug from "debug";
+const debug = Debug("app:doc");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,5 +18,7 @@ const swaggerSpec = {
   },
   apis: [`${path.join(__dirname, "./documentation/*.js")}`],
 };
+
+debug("SWAGGER DOC START");
 
 export default swaggerSpec;

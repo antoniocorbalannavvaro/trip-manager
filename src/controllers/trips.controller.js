@@ -2,7 +2,12 @@ import pool from "../db.js";
 
 export const getAllTrips = async (req, res, next) => {
   try {
-    const result = await pool.query("SELECT * FROM trips;");
+    const result = await pool.query(
+      `SELECT * FROM trips t 
+      INNER JOIN customers c ON t.customer_id = c.customer_id
+      WHERE user_id = $1`,
+      [res.locals.user.rows[0].user_id]
+    );
     if (result.rowCount === 0) {
       res.status(403).json({
         message: "No Trips Yet",
@@ -17,9 +22,12 @@ export const getAllTrips = async (req, res, next) => {
 export const getTrip = async (req, res, next) => {
   try {
     const tripId = req.params.id;
-    const result = await pool.query("SELECT * FROM trips WHERE trip_id = $1", [
-      tripId,
-    ]);
+    const result = await pool.query(
+      `SELECT * FROM trips t 
+      INNER JOIN customers c ON t.customer_id = c.customer_id
+      WHERE user_id = $1 AND trip_id = $2`,
+      [res.locals.user.rows[0].user_id, tripId]
+    );
     if (result.rowCount === 0) {
       res.status(403).json({
         message: `No Trips with id ${tripId} was found`,

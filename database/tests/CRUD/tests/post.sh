@@ -15,7 +15,7 @@ printf "\n"
 
 printf "${CYAN}[CREATE TABLES] ${NC}"
 curl 'http://localhost:3000/test/DB/createTables'
-  
+
 printf "\n"
 
 printf "${CYAN}[POST DATA] ${NC}"
